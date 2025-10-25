@@ -14,6 +14,7 @@
             <h1>EAAAP</h1>
             <p>Empresa de Acueducto, Aseo y Alcantarillado de Puerto Asís</p>
         </div>
+        <div id="bombeo-banner" class="bombeo-banner" role="status" aria-live="polite"></div>
         <nav class="nav-atajos container">
             <a class="atajo" href="#sectores">
                 <span class="icon">🌊</span> Sectores
@@ -109,6 +110,96 @@
          -->
     
 </body>
+<script>
+(function () {
+  // Franja horaria en minutos desde medianoche (Bogotá)
+  const franjas = [
+    { id: "manana", label: "7:00–9:00 a. m.", start: 7*60,  end: 9*60  },
+    { id: "tarde",  label: "2:00–4:00 p. m.", start: 14*60, end: 16*60 },
+    { id: "noche",  label: "7:00–9:00 p. m.", start: 19*60, end: 21*60 },
+  ];
+
+  // 👉 EDITA AQUÍ tu rotación/tabla de sectores.
+  // Ejemplo: por día de la semana (0=Domingo..6=Sábado) defines sector por franja.
+  // Reemplaza "Sector 1/2/3" por tus sectores reales (EA-1, EA-2, PA-3, etc.)
+  const sectoresPorDia = {
+    0: { manana: "Sector 1", tarde: "Sector 2", noche: "Sector 3" }, // Domingo
+    1: { manana: "Sector 4", tarde: "Sector 5", noche: "Sector 6" }, // Lunes
+    2: { manana: "Sector 7", tarde: "Sector 8", noche: "Sector 9" }, // Martes
+    3: { manana: "Sector 10", tarde: "Sector 11", noche: "Sector 12" }, // Miércoles
+    4: { manana: "Sector 13", tarde: "Sector 14", noche: "Sector 15" }, // Jueves
+    5: { manana: "Sector 16", tarde: "Sector 17", noche: "Sector 18" }, // Viernes
+    6: { manana: "Sector 19", tarde: "Sector 20", noche: "Sector 21" }, // Sábado
+  };
+
+  // Obtiene hora actual en zona Bogota
+  function ahoraBogota() {
+    const parts = new Intl.DateTimeFormat('es-CO', {
+      timeZone: 'America/Bogota',
+      hour12: false,
+      weekday: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).formatToParts(new Date());
+
+    const obj = Object.fromEntries(parts.map(p => [p.type, p.value]));
+    const h = parseInt(obj.hour, 10);
+    const m = parseInt(obj.minute, 10);
+    const s = parseInt(obj.second, 10);
+    
+    const weekdayShort = obj.weekday.toLowerCase();
+    const mapDia = { "dom":0, "lun":1, "mar":2, "mié":3, "mie":3, "jue":4, "vie":5, "sáb":6, "sab":6 };
+    const dia = mapDia[weekdayShort] ?? new Date().getDay(); 
+    return { horas: h, minutos: m, segundos: s, minutosDesdeMedianoche: h*60+m, dia };
+  }
+
+  function franjaActual(mins) {
+    return franjas.find(f => mins >= f.start && mins < f.end) || null;
+  }
+
+  function proximaFranja(mins) {
+    // hoy
+    const hoy = franjas.find(f => mins < f.start);
+    if (hoy) return { ...hoy, cuando: "hoy" };
+    // mañana (la primera franja del arreglo)
+    return { ...franjas[0], cuando: "mañana" };
+  }
+
+  function render() {
+    const banner = document.getElementById('bombeo-banner');
+    if (!banner) return;
+
+    const { minutosDesdeMedianoche, dia } = ahoraBogota();
+    const actual = franjaActual(minutosDesdeMedianoche);
+    banner.innerHTML = ""; 
+
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+
+    const texto = document.createElement('div');
+
+    if (actual) {
+      const sector = (sectoresPorDia[dia] && sectoresPorDia[dia][actual.id]) || "Sector (definir)";
+      banner.className = "bombeo-banner active";
+      texto.textContent = `Se inició el bombeo — ${actual.label}. Sector: ${sector}.`;
+    } else {
+      const prox = proximaFranja(minutosDesdeMedianoche);
+      const sectorProx = (sectoresPorDia[dia] && sectoresPorDia[dia][prox.id]) || "Sector (definir)";
+      banner.className = "bombeo-banner inactive";
+      texto.textContent = `No hay bombeo en este momento. Próxima franja ${prox.cuando}: ${prox.label} (Sector: ${sectorProx}).`;
+    }
+
+    banner.appendChild(dot);
+    banner.appendChild(texto);
+  }
+
+  render();
+  // Actualiza cada minuto para reflejar cambios de franja
+  setInterval(render, 60 * 1000);
+})();
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
 </html>
