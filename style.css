@@ -198,3 +198,38 @@ html { scroll-behavior: smooth; }
   background: currentColor;
   flex-shrink: 0;
 }
+
+
+/* Contenedor que define el área visible de la ola */
+.wave-container {
+    width: 100%; /* El ancho que ocupará en tu diseño */
+    height: 50px; /* La altura de tu ola */
+    overflow: hidden; /* ¡ESENCIAL! Oculta las partes del SVG fuera de este contenedor */
+    position: relative; /* Por si necesitas posicionar otros elementos sobre la ola */
+}
+
+/* El elemento SVG dentro del contenedor */
+.wave-svg {
+    /* El SVG es el doble de ancho que el contenedor visible (1000px / 500px = 200%) */
+    width: 200%; 
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    
+    /* Aplica la animación */
+    animation: wave-animation 10s linear infinite; /* 10s duración, movimiento constante, repetición infinita */
+    
+    /* Esto es para que la ola empiece desde la izquierda, ya preparada para el movimiento */
+    transform: translateX(0); 
+}
+
+/* Definición de la animación */
+@keyframes wave-animation {
+    0% {
+        /* Posición inicial: el SVG no está desplazado */
+        transform: translateX(0%);
+    }
+    100% {
+        /* Posición final: el SVG se ha desplazado la mitad de su propio ancho hacia la izquierda */
+        /* Esto hace que el segundo patrón de ola se alinee justo donde estaba el primero */
+        transform: translateX(-50%); 
+    }
+}

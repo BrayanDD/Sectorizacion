@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EAAAP</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+
+    <link rel="icon" type="image/png" href="img/logo.png" sizes="32x32">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
@@ -24,24 +27,14 @@
             </a>
         </nav>
 
-               <!-- <section class="nav-olas">
-  <div class="olas-top">
-    <svg viewBox="0 0 500 40" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,25 C150,50 350,0 500,25 L500,40 L0,40 Z" fill="#00AEEF"></path>
-    </svg>
-  </div>
-
-  <div class="container nav-olas-inner">
-    <a class="chip" href="#sectores">Sectores</a>
-    <a class="chip" href="#horario">Horario</a>
-  </div>
-</section> -->
+          
 
             <div id="sectores" class="titulo-seccion">
                 <h2>SECTORES</h2>
-                <div class="wave">
-                    <svg viewBox="0 0 500 50" preserveAspectRatio="none">
-                    <path d="M0,30 C150,60 350,0 500,30 L500,00 L0,0 Z" style="fill:#00AEEF;"></path>
+                <div class="wave-container">
+                    <svg class="wave-svg" viewBox="0 0 1000 50" preserveAspectRatio="none">
+                        <path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" style="fill:#00AEEF;"></path>
+                        <path d="M500,30 C650,60 850,0 1000,30 L1000,50 L500,50 Z" style="fill:#00AEEF;"></path>
                     </svg>
                 </div>
             </div>
@@ -64,142 +57,71 @@
             </div>
             <div id="horario" class="titulo-seccion">
             <h2>HORARIO</h2>
-            <div class="wave">
-                <svg viewBox="0 0 500 50" preserveAspectRatio="none">
-                <path d="M0,30 C150,60 350,0 500,30 L500,00 L0,0 Z" style="fill:#00AEEF;"></path>
-                </svg>
-            </div>
+            <div class="wave-container">
+                    <svg class="wave-svg" viewBox="0 0 1000 50" preserveAspectRatio="none">
+                        <path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" style="fill:#00AEEF;"></path>
+                        <path d="M500,30 C650,60 850,0 1000,30 L1000,50 L500,50 Z" style="fill:#00AEEF;"></path>
+                    </svg>
+                </div>
             </div>
             <div class="container my-4 text-center">
                 <img src="img/horario.jpeg" alt="Horario" class="img-fluid rounded">
             </div>
+<section class="container" id="seccion-ayuda" style="margin-top: 40px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+    
+    <h2 style="color: #004d99; border-bottom: 2px solid #00aEEF; padding-bottom: 5px;">📘 Cómo Leer el Horario de Sectores</h2>
 
+    <p>Esta sección te ayuda a entender rápidamente a qué hora y qué sector le corresponde el turno de bombeo cada día. El sistema opera con tres franjas horarias fijas y una rotación de sectores que ocurre de Lunes a Viernes.</p>
 
-              <!-- <div class="titulo-seccion">
-            <h2>SECTORES</h2>
-            <div class="wave wave-up">
-                <svg viewBox="0 0 500 50" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="gradLogo" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#00A651; stop-opacity:1" />   
-                    <stop offset="50%" style="stop-color:#00AEEF; stop-opacity:1" />  
-                    <stop offset="100%" style="stop-color:#0066B3; stop-opacity:1" /> 
-                    </linearGradient>
-                </defs>
-                <path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="url(#gradLogo)"></path>
-                </svg>
-            </div>
-            </div>
+    <hr style="border-top: 1px dashed #ccc;">
 
-            
-            <div class="titulo-seccion">
-            <h2>HORARIO</h2>
-            <div class="wave wave-up">
-                <svg viewBox="0 0 500 50" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="gradLogo" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#00A651; stop-opacity:1" />   
-                    <stop offset="50%" style="stop-color:#00AEEF; stop-opacity:1" />  
-                    <stop offset="100%" style="stop-color:#0066B3; stop-opacity:1" /> 
-                    </linearGradient>
-                </defs>
-                <path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="url(#gradLogo)"></path>
-                </svg>
-            </div>
-            </div>
-         -->
+    <h3 style="color: #333;">1. El Formato del Horario</h3>
+    
+    <img src="img/fech.png" alt="">
+    <hr>
+    <p>El calendario está organizado en una matriz que muestra la información clave:</p>
+    <ul>
+        <li><strong>Día:</strong> El número en la parte superior de cada columna indica el día del mes.</li>
+        <li><strong>Franja Horaria:</strong> Las filas a la izquierda indican el rango de tiempo:
+            <ul>
+                <li><strong>7:00 a. m. – 9:00 a. m.:</strong> Turno de la mañana.</li>
+                <li><strong>2:00 p. m. – 4:00 p. m.:</strong> Turno de la tarde.</li>
+                <li><strong>8:00 p. m. – 9:00 p. m.:</strong> Turno de la noche.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3 style="color: #333;">2. Sectores y Colores</h3>
+    
+    <img src="img/sec.png" alt="">
+    <hr>
+    <p>Cada celda de la matriz indica el sector que tendrá el servicio de bombeo en esa franja horaria:</p>
+    <ul>
+        <li><strong>Sectores del Día:</strong> Los números <strong>1, 2, 3</strong> y la combinación <strong>1 y 4</strong> indican qué sector recibe el servicio. Por ejemplo, si ves un <strong>2</strong>, significa que el Sector 2 tiene el servicio.</li>
+        <li><strong>"ABIERTO" (Días Festivos/Fines de Semana):</strong> Los días Sábado y Domingo el servicio es general. El horario está marcado como <strong>ABIERTO</strong>, lo que indica que no aplica el turno de rotación por sectores.</li>
+    </ul>
+
+    <h3 style="color: #333;">3. Ejemplo de Lectura</h3>
+    <img src="img/ejem.png" alt="">
+
+    <hr>
+    <p>Tomemos la celda de la matriz que indica el Servicio de Tarde del Día 12 como ejemplo:</p>
+    
+    <div style="background-color: #f0f0f0; border: 1px solid #ddd; padding: 15px; margin: 15px 0;">
+        <p style="font-size: 1.1em; font-weight: bold; color: #cc5500;">📅 Día 12 (Miércoles)</p>
+        <p>🕒 Hora: 2:00 p. m. – 4:00 p. m. (Turno de la tarde).</p>
+        <p>💧 Sector: El número en la celda es 1 Y 4.</p>
+        <p>➡️ Conclusión: El día 12 del mes, de 2:00 p. m. a 4:00 p. m., el servicio de bombeo está activo para los Sectores 1 y 4.</p>
+    </div>
+
+</section>
+
+             
     
 </body>
-<script>
-(function () {
-  // Franja horaria en minutos desde medianoche (Bogotá)
-  const franjas = [
-    { id: "manana", label: "7:00–9:00 a. m.", start: 7*60,  end: 9*60  },
-    { id: "tarde",  label: "2:00–4:00 p. m.", start: 14*60, end: 16*60 },
-    { id: "noche",  label: "7:00–9:00 p. m.", start: 19*60, end: 21*60 },
-  ];
 
-  // 👉 EDITA AQUÍ tu rotación/tabla de sectores.
-  // Ejemplo: por día de la semana (0=Domingo..6=Sábado) defines sector por franja.
-  // Reemplaza "Sector 1/2/3" por tus sectores reales (EA-1, EA-2, PA-3, etc.)
-  const sectoresPorDia = {
-    0: { manana: "Sector 1", tarde: "Sector 2", noche: "Sector 3" }, // Domingo
-    1: { manana: "Sector 4", tarde: "Sector 5", noche: "Sector 6" }, // Lunes
-    2: { manana: "Sector 7", tarde: "Sector 8", noche: "Sector 9" }, // Martes
-    3: { manana: "Sector 10", tarde: "Sector 11", noche: "Sector 12" }, // Miércoles
-    4: { manana: "Sector 13", tarde: "Sector 14", noche: "Sector 15" }, // Jueves
-    5: { manana: "Sector 16", tarde: "Sector 17", noche: "Sector 18" }, // Viernes
-    6: { manana: "Sector 19", tarde: "Sector 20", noche: "Sector 21" }, // Sábado
-  };
-
-  // Obtiene hora actual en zona Bogota
-  function ahoraBogota() {
-    const parts = new Intl.DateTimeFormat('es-CO', {
-      timeZone: 'America/Bogota',
-      hour12: false,
-      weekday: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    }).formatToParts(new Date());
-
-    const obj = Object.fromEntries(parts.map(p => [p.type, p.value]));
-    const h = parseInt(obj.hour, 10);
-    const m = parseInt(obj.minute, 10);
-    const s = parseInt(obj.second, 10);
-    
-    const weekdayShort = obj.weekday.toLowerCase();
-    const mapDia = { "dom":0, "lun":1, "mar":2, "mié":3, "mie":3, "jue":4, "vie":5, "sáb":6, "sab":6 };
-    const dia = mapDia[weekdayShort] ?? new Date().getDay(); 
-    return { horas: h, minutos: m, segundos: s, minutosDesdeMedianoche: h*60+m, dia };
-  }
-
-  function franjaActual(mins) {
-    return franjas.find(f => mins >= f.start && mins < f.end) || null;
-  }
-
-  function proximaFranja(mins) {
-    // hoy
-    const hoy = franjas.find(f => mins < f.start);
-    if (hoy) return { ...hoy, cuando: "hoy" };
-    // mañana (la primera franja del arreglo)
-    return { ...franjas[0], cuando: "mañana" };
-  }
-
-  function render() {
-    const banner = document.getElementById('bombeo-banner');
-    if (!banner) return;
-
-    const { minutosDesdeMedianoche, dia } = ahoraBogota();
-    const actual = franjaActual(minutosDesdeMedianoche);
-    banner.innerHTML = ""; 
-
-    const dot = document.createElement('span');
-    dot.className = 'dot';
-
-    const texto = document.createElement('div');
-
-    if (actual) {
-      const sector = (sectoresPorDia[dia] && sectoresPorDia[dia][actual.id]) || "Sector (definir)";
-      banner.className = "bombeo-banner active";
-      texto.textContent = `Se inició el bombeo — ${actual.label}. Sector: ${sector}.`;
-    } else {
-      const prox = proximaFranja(minutosDesdeMedianoche);
-      const sectorProx = (sectoresPorDia[dia] && sectoresPorDia[dia][prox.id]) || "Sector (definir)";
-      banner.className = "bombeo-banner inactive";
-      texto.textContent = `No hay bombeo en este momento. Próxima franja ${prox.cuando}: ${prox.label} (Sector: ${sectorProx}).`;
-    }
-
-    banner.appendChild(dot);
-    banner.appendChild(texto);
-  }
-
-  render();
-  // Actualiza cada minuto para reflejar cambios de franja
-  setInterval(render, 60 * 1000);
-})();
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+<script src="js/logica.js"></script>
 </html>
