@@ -17,7 +17,29 @@
             <h1>EAAAP</h1>
             <p>Empresa de Acueducto, Aseo y Alcantarillado de Puerto Asís</p>
         </div>
-        <div id="bombeo-banner" class="bombeo-banner" role="status" aria-live="polite"></div>
+        <div id="bombeo-banner-normal" class="bombeo-banner"></div>
+
+        <div id="bombeo-banner-emergencia" class="bombeo-banner" style="display:none; background-color: #ff0000; color: white;"></div>
+
+        <div id="admin-panel" style="display:none; position: fixed; top: 10px; right: 10px; background: #fff; padding: 15px; border: 2px solid #333; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <h3 style="margin-top:0;">Control de Emergencia</h3>
+            
+            <label for="razon-emergencia" style="font-weight: bold;">Motivo de Suspensión:</label>
+            <select id="razon-emergencia" style="width: 100%; padding: 5px; margin-bottom: 10px;">
+                <option value="">-- Seleccione una Razón Predeterminada --</option>
+                <option value="Falla eléctrica.">Por tema eléctrico.</option>
+                <option value="Incremento crítico del río.">Incremento del río.</option>
+                <option value="Reparaciones urgentes de tubería.">Reparaciones urgentes de tubería.</option>
+            </select>
+            
+            <label for="descripcion-custom" style="font-weight: bold;">Descripción Adicional (Opcional):</label>
+            <textarea id="descripcion-custom" rows="3" placeholder="Ej: Falla en subestación #3, tiempo estimado 4 horas." style="width: 100%; padding: 5px; margin-bottom: 15px;"></textarea>
+            
+            <button id="activar-emergencia" style="background-color: #cc0000; color: white; padding: 8px; border: none; cursor: pointer; margin-right: 10px;">Activar Suspensión</button>
+            <button id="desactivar-emergencia" style="background-color: #008000; color: white; padding: 8px; border: none; cursor: pointer;">Desactivar</button>
+            
+            <p style="margin-top: 15px;">Estado: <span id="estado-actual" style="font-weight: bold;">Normal</span></p>
+        </div>
         <nav class="nav-atajos container">
             <a class="atajo" href="#sectores">
                 <span class="icon">🌊</span> Sectores
