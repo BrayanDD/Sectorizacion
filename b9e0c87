@@ -1,0 +1,60 @@
+[33mcommit 11098ed371d9d129987c31356a4e70e57e3925a7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: b9e0c87 ec722ac
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Wed Nov 12 17:27:30 2025 -0500
+
+    Merge branch 'master' of https://github.com/BrayanDD/Sectorizacion
+
+[33mcommit b9e0c878cf42a10a5332e00dc7af5f68964ac3a1[m
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Wed Nov 12 17:27:25 2025 -0500
+
+    test
+
+[33mcommit ec722acb33d48f2ac8ec742425c98e5af63f1914[m
+Author: BrayanDD <146048371+BrayanDD@users.noreply.github.com>
+Date:   Tue Nov 11 13:09:45 2025 -0500
+
+    Delete CNAME
+
+[33mcommit ffec64ae019a0857ec89d0cb426995364efd671f[m
+Author: BrayanDD <146048371+BrayanDD@users.noreply.github.com>
+Date:   Tue Nov 11 13:07:45 2025 -0500
+
+    Create CNAME
+
+[33mcommit e6f6f02390d3b280b366fca93830ed9517775f69[m
+Author: BrayanDD <146048371+BrayanDD@users.noreply.github.com>
+Date:   Tue Nov 11 12:49:43 2025 -0500
+
+    Delete CNAME
+
+[33mcommit fb8c899401435643fad8664f1457572b68ea4d61[m
+Author: BrayanDD <146048371+BrayanDD@users.noreply.github.com>
+Date:   Tue Nov 11 12:43:09 2025 -0500
+
+    Create CNAME
+
+[33mcommit 9bd49b330e15391a6f0e2cd9ab01c021b36687dd[m
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Tue Nov 11 12:38:51 2025 -0500
+
+    fa
+
+[33mcommit 8683ece973fa450ed6b3a045c5bed7d13804e751[m
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Tue Nov 11 12:37:36 2025 -0500
+
+    entre
+
+[33mcommit 64634e6f479aa52c27b9a1b36a42b3e7e62e7570[m
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Sat Oct 25 16:43:51 2025 -0500
+
+    sector
+
+[33mcommit bdf389c22cfa6caa5342b3678a63a062eab905e8[m
+Author: BrayanDD <isosbrayan@gmail.com>
+Date:   Thu Aug 14 22:10:55 2025 -0500
+
+    commit init
