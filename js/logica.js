@@ -261,9 +261,9 @@ function setupAuthListener() {
     const loginForm = document.getElementById('login-form');
     const containerShowBtn = document.getElementById('contenedor-boton-mostrar');
     const adminMessageContainer = document.getElementById('admin-message-container');
-    const logoutBtn = document.getElementById('logout-btn');
+    const logoutBtn = document.getElementById('logout');
     const subloginBtn = document.getElementById('sublogin');
-
+    
 
     // Esta es la función CLAVE: detecta el estado de login
     onAuthStateChanged(auth, (user) => {
@@ -281,7 +281,7 @@ function setupAuthListener() {
         }
     });
 
-    logoutBtn?.addEventListener('click', async () => {
+    logoutBtn.addEventListener('click', async () => {
         try {
             await signOut(auth);
             showMessage("Sesión cerrada correctamente.", 'singme', 'info');

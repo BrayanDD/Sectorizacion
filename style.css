@@ -261,7 +261,8 @@ html { scroll-behavior: smooth; }
        
         #emergency-message-banner.active { background-color: #dc3545; } /* Rojo - Emergencia */
   
-.contenedor-boton-mostrar{
-  left: 10px;
-  top: 40px;
+#contenedor-boton-mostrar{
+      top: 10px;
+    position: absolute;
+    left: 20px;
 }
