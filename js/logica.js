@@ -1,8 +1,6 @@
 (function () {
     
-    // ==========================================
-    // 1. CONSTANTES Y CONFIGURACIÓN ORIGINAL
-    // ==========================================
+   
     const franjas = [
         { id: "manana", label: "7:00–9:00 a. m.", start: 7*60, end: 9*60 },
         { id: "tarde", label: "2:00–4:00 p. m.", start: 14*60, end: 16*60 },
@@ -33,20 +31,14 @@
         noche: "Todos (Abierto)" 
     };
 
-    // ==========================================
-    // 2. CONSTANTES DE EMERGENCIA (NUEVO)
-    // ==========================================
-    // Mapa de razones de emergencia a rutas de imagen
+
     const MAPA_IMAGENES = {
         "Falla eléctrica.": "img/emer/ener.png",
         "Incremento crítico del río.": "img/emer/agua.png",
-        "Reparaciones urgentes de tubería.": "" // No necesita imagen
+        "Reparaciones urgentes de tubería.": "" 
     };
     
-    // ==========================================
-    // 3. FUNCIONES DE CÁLCULO DE HORARIO (ORIGINALES)
-    // ==========================================
-    
+ 
     function getSectoresParaFecha(anio, mes, fecha) {
         
         const diaDeLaSemana = new Date(anio, mes, fecha).getDay();
@@ -124,33 +116,31 @@
     }
 
     
-    // ==========================================
-    // 4. FUNCIÓN RENDER PRINCIPAL (MODIFICADA)
-    // ==========================================
+
     function render() {
-        // Los dos banners (normal y emergencia) deben existir en el HTML
+        
         const bannerNormal = document.getElementById('bombeo-banner-normal');
         const bannerEmergencia = document.getElementById('bombeo-banner-emergencia');
         
         if (!bannerNormal || !bannerEmergencia) return;
 
-        // --- 4.1. CHEQUEO DE ESTADO DE EMERGENCIA ---
+       
         const estadoEmergencia = JSON.parse(localStorage.getItem('Emergencia') || '{}');
         
         if (estadoEmergencia.activo) {
-            // ANULACIÓN: Muestra el banner de emergencia y sale
             
-            bannerNormal.style.display = 'none'; // Oculta el normal
-            bannerEmergencia.style.display = 'flex'; // Muestra el de emergencia
-            bannerEmergencia.className = "bombeo-banner inactive"; // Estilo rojo
-            bannerEmergencia.innerHTML = ""; // Limpia el contenido anterior
+            
+            bannerNormal.style.display = 'none'; 
+            bannerEmergencia.style.display = 'flex'; 
+            bannerEmergencia.className = "bombeo-banner inactive"; 
+            bannerEmergencia.innerHTML = "";
 
-            // Crea el contenido de la emergencia
+       
             const dot = document.createElement('span');
             dot.className = 'dot';
             const texto = document.createElement('div');
             
-            // Construye el mensaje
+        
             let mensajeCompleto = estadoEmergencia.razon;
             if (estadoEmergencia.descripcion_custom) {
                 mensajeCompleto += `: ${estadoEmergencia.descripcion_custom}`;
@@ -158,7 +148,7 @@
 
             texto.textContent = `¡ATENCIÓN! Distribución suspendida por ${mensajeCompleto}`;
             
-            // Añadir la imagen si la URL está presente
+            
             if (estadoEmergencia.imagenURL) {
                 const imagen = document.createElement('img');
                 imagen.src = estadoEmergencia.imagenURL;
@@ -173,15 +163,13 @@
             bannerEmergencia.appendChild(dot);
             bannerEmergencia.appendChild(texto);
             
-            return; // Detiene la ejecución del cálculo normal
+            return; 
         }
         
-        // --- 4.2. CÁLCULO DE HORARIO NORMAL ---
-        
-        // Vuelve al estado normal
+  
         bannerEmergencia.style.display = 'none';
         bannerNormal.style.display = 'flex';
-        bannerNormal.innerHTML = ""; // Limpia el banner normal para rellenar
+        bannerNormal.innerHTML = ""; 
 
         const { minutosDesdeMedianoche, dia, fecha, mes, anio } = ahoraBogota();
         
@@ -194,19 +182,19 @@
         const texto = document.createElement('div');
 
         if (actual) {
-            // Estado: ACTIVO
+            
             const sector = sectoresDelDia[actual.id];
             bannerNormal.className = "bombeo-banner active";
             texto.textContent = `Se inició el bombeo — ${actual.label}. Sector: ${sector}.`;
         } else {
-            // Estado: INACTIVO
+            
             const prox = proximaFranja(minutosDesdeMedianoche);
             
             let sectorProx;
             if (prox.cuando === "hoy") {
                 sectorProx = sectoresDelDia[prox.id];
             } else {
-                // Si es mañana, recalculamos los sectores para el día siguiente
+                
                 const fechaHoy = new Date(anio, mes, fecha);
                 const fechaManana = new Date(fechaHoy.getTime() + (24 * 60 * 60 * 1000));
                 
@@ -227,10 +215,7 @@
     }
 
 
-    // ==========================================
-    // 5. LÓGICA DEL PANEL DE ADMINISTRACIÓN (NUEVO)
-    // ==========================================
-    
+   
     function inicializarPanelAdmin() {
         const btnActivar = document.getElementById('activar-emergencia');
         const btnDesactivar = document.getElementById('desactivar-emergencia');
@@ -241,15 +226,15 @@
         function actualizarPanel() {
             const estado = JSON.parse(localStorage.getItem('Emergencia') || '{}');
             if (estado.activo) {
-                spanEstado.textContent = `EMERGENCIA ACTIVA: ${estado.razon} ${estado.descripcion_custom ? '(' + estado.descripcion_custom + ')' : ''}`;
-                spanEstado.style.color = 'red';
+                spanEstado.textContent = `Información: ${estado.razon} ${estado.descripcion_custom ? '(' + estado.descripcion_custom + ')' : ''}`;
+                spanEstado.style.color = 'yellow';
             } else {
                 spanEstado.textContent = 'Normal';
                 spanEstado.style.color = 'green';
             }
         }
         
-        // Listener para ACTIVAR SUSPENSIÓN
+      
         btnActivar.addEventListener('click', () => {
             const razonSeleccionada = selectRazon.value; 
             const descripcionCustom = textareaCustom.value.trim();
@@ -272,7 +257,7 @@
             actualizarPanel();
         });
     
-        // Listener para DESACTIVAR SUSPENSIÓN (Reinicio manual)
+       
         btnDesactivar.addEventListener('click', () => {
             localStorage.removeItem('Emergencia');
             render(); 
@@ -285,11 +270,8 @@
     }
 
 
-    // ==========================================
-    // 6. INICIALIZACIÓN GLOBAL (MODIFICADA)
-    // ==========================================
     
-    // Lógica de detección de admin usando un parámetro en la URL, ej: ?admin=2020
+
     const urlParams = new URLSearchParams(window.location.search);
     const claveAdmin = urlParams.get('admin'); 
     
@@ -301,7 +283,7 @@
         }
     }
 
-    // Ejecuta la función de renderizado por primera vez y la repite cada minuto.
+    
     render();
     setInterval(render, 60 * 1000);
     
