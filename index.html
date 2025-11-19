@@ -16,30 +16,11 @@
             
             <h1>EAAAP</h1>
             <p>Empresa de Acueducto, Aseo y Alcantarillado de Puerto Asís</p>
+            
         </div>
-        <div id="bombeo-banner-normal" class="bombeo-banner"></div>
-
-        <div id="bombeo-banner-emergencia" class="bombeo-banner" style="display:none; background-color: #ff0000; color: white;"></div>
-
-        <div id="admin-panel" style="display:none; position: fixed; top: 10px; right: 10px; background: #fff; padding: 15px; border: 2px solid #333; z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-            <h3 style="margin-top:0;">Control de Emergencia</h3>
-            
-            <label for="razon-emergencia" style="font-weight: bold;">Motivo de Suspensión:</label>
-            <select id="razon-emergencia" style="width: 100%; padding: 5px; margin-bottom: 10px;">
-                <option value="">-- Seleccione una Razón Predeterminada --</option>
-                <option value="Falla eléctrica.">Por tema eléctrico.</option>
-                <option value="Incremento crítico del río.">Incremento del río.</option>
-                <option value="Reparaciones urgentes de tubería.">Reparaciones urgentes de tubería.</option>
-            </select>
-            
-            <label for="descripcion-custom" style="font-weight: bold;">Descripción Adicional (Opcional):</label>
-            <textarea id="descripcion-custom" rows="3" placeholder="Ej: Falla en subestación #3, tiempo estimado 4 horas." style="width: 100%; padding: 5px; margin-bottom: 15px;"></textarea>
-            
-            <button id="activar-emergencia" style="background-color: #cc0000; color: white; padding: 8px; border: none; cursor: pointer; margin-right: 10px;">Activar Suspensión</button>
-            <button id="desactivar-emergencia" style="background-color: #008000; color: white; padding: 8px; border: none; cursor: pointer;">Desactivar</button>
-            
-            <p style="margin-top: 15px;">Estado: <span id="estado-actual" style="font-weight: bold;">Normal</span></p>
-        </div>
+        <div id="emergency-message-banner" class="bombeo-banner active d-none" role="alert" aria-live="assertive"></div>
+        <div id="bombeo-banner" class="bombeo-banner" role="status" aria-live="polite"></div>
+        <div class="container" id="user"></div>
         <nav class="nav-atajos container">
             <a class="atajo" href="#sectores">
                 <span class="icon">🌊</span> Sectores
@@ -49,7 +30,54 @@
             </a>
         </nav>
 
-          
+          <div class="login-container">
+
+        <!-- 1. Botón para MOSTRAR el login (Visible al inicio) -->
+        <!-- Este div NO tiene la clase "card", por lo que no tiene recuadro -->
+        <div id="contenedor-boton-mostrar">
+           
+            <button id="show-login-btn" class="btn btn-principal ">
+                <img src="img/settings_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png" alt="" style="width: 10px;" height="20px">
+            </button>
+        </div>
+
+        <!-- 2. Formulario de Login (Oculto por defecto) -->
+        <!-- El formulario SÍ tiene las clases "card" para aparecer dentro de un recuadro -->
+        <form id="login-form" class="d-none card shadow-lg p-4">
+            <h2 class="h3 fw-bold text-principal mb-4 text-center">Iniciar Sesión</h2>
+            <div class="singmessage" id="singme" style="display: none;"></div>
+            <!-- Campo de Usuario -->
+            <div class="mb-3 text-start">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" placeholder="usuario@ejemplo.com"
+                       class="form-control form-control-lg">
+            </div>
+            
+            <!-- Campo de Contraseña -->
+            <div class="mb-4 text-start">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="••••••••"
+                       class="form-control form-control-lg">
+            </div>
+
+            <!-- Botón de Envío del Formulario -->
+            <button id="sublogin" type="submit" class="btn btn-acceder w-100 btn-lg fw-bold shadow-sm">
+                Acceder
+            </button>
+        </form>
+        <div id="admin-message-container" class="d-none card shadow-lg p-4">
+            <h2 class="h4 fw-bold text-danger mb-3 text-center">🚨 Mensaje de Emergencia</h2>
+            <textarea id="emergency-message-text" class="form-control mb-3" rows="3" placeholder="Escribe el mensaje de emergencia aquí... (ej: Bomba dañada, servicio suspendido hasta las 10:00 PM)"></textarea>
+            <button id="send-emergency-btn" class="btn btn-danger w-100 fw-bold mb-2">
+                Enviar Mensaje de Emergencia
+            </button>
+            <button id="clear-emergency-btn" class="btn btn-outline-secondary w-100">
+                Limpiar/Ocultar Mensaje
+            </button>
+            <button id="logout" class="btn btn-outline-secondary w-100">Cerrar sesión</button>
+        </div>
+
+    </div>
 
             <div id="sectores" class="titulo-seccion">
                 <h2>SECTORES</h2>
@@ -145,5 +173,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
-<script src="js/logica.js"></script>
+<script type="module" src="js/logica.js"></script>
 </html>
